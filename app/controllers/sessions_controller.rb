@@ -6,10 +6,16 @@ class SessionsController < ApplicationController
       params[:user][:password]
     )
 
-    render :new if user.nil?
-
-    log_in_user!(user)
-    redirect_to user_url(user)
+    if user.nil?
+      flash.now[:errors] = ["Invalid login credentials!"]
+      render :new
+    elsif !user.activated?
+      flash.now[:errors] = ["Please activate your account!"]
+      render :new
+    else
+      log_in_user!(user)
+      redirect_to user_url(user)
+    end
   end
 
   def new

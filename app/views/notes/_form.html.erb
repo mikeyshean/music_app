@@ -1,8 +1,10 @@
+
 <form action="<%= notes_url %>" method="post">
 <%= authenticity_token %>
 <input type="hidden" name="note[track_id]" value="<%= track.id %>">
 
   <p><label for="note_text">Notes: </label></p>
+  <%= flash_notice %>
   <textarea name="note[text]" id="note_text"><%= note.text  %></textarea>
 
   <p><button>Submit</button></p>

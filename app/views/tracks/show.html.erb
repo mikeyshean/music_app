@@ -7,4 +7,4 @@
 <%= ugly_lyrics(@track.lyrics) %>
 
 <%= render "notes/form", { note: @note, track: @track } %>
-<%= render "notes/note", notes: @notes %>
+<%= render "notes/note", notes: @track.notes %>

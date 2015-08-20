@@ -27,4 +27,14 @@ module ApplicationHelper
       </form>
     HTML
   end
+
+  def flash_notice
+    notices = ["<ul>"]
+    return unless flash[:notice]
+
+    flash[:notice].each { |notice| notices << "<li>#{notice}</li>" }
+
+    notices.push("</ul>").join("").html_safe
+  end
+
 end

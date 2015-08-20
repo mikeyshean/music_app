@@ -2,8 +2,8 @@ class TracksController < ApplicationController
   before_action :require_login
 
   def new
-    @track = Track.new
-    @album = Album.find(params[:album_id])
+    @track = Track.new()
+    @album = Album.find(params[:album_id]) #use params
     @albums = Album.where(band_id: @album.band_id)
   end
 
@@ -28,9 +28,11 @@ class TracksController < ApplicationController
   end
 
   def show
-    @track = Track.find(params[:id])
+    @track = Track.where(id: params[:id])
+      .includes(:notes)
+      .order(created_at: :desc)
+      .first
     @note = Note.new
-    @notes = @track.notes.order(created_at: :desc)
   end
 
   private

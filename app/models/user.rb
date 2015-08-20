@@ -33,12 +33,20 @@ class User < ActiveRecord::Base
     self.email
   end
 
-
+  def activated?
+    self.activated
+  end
 
   private
 
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
+  end
+
+  def active_user?
+    if self.activated == false
+      self.errors.messages = "Invalid login credentials!"
+    end
   end
 
 end
