@@ -1,0 +1,41 @@
+<h1>New Album</h1>
+
+<p>
+  <a href="<%= band_url(@band) %>">Back to <%= @band.name %></a>
+</p>
+
+
+<form action="<%= albums_url %>" method="post">
+
+  <label for="album_band"> Band: </label>
+    <select
+      name="album[band_id]"
+      id="album_band">
+    <% @bands.each do |band| %>
+      <option value="<%= band.id %>" <%= "selected" if band == @band %>><%= band.name  %></option>
+    <% end %>
+  </select>
+  <br>
+
+
+  <label for="album_name">Album: </label>
+  <input
+    type="text"
+    name="album[name]"
+    id="album_name"
+    value="<%= @album.name %>">
+  <br>
+
+  <label for="album_style">Type: </label>
+  <% Album::STYLES.each do |style| %>
+    <input
+      type="radio"
+      name="album[style]"
+      id="album_style"
+      value="<%= style %>"> <%= style.capitalize %>
+  <% end %>
+  <br>
+
+
+  <button>Submit</button>
+</form>

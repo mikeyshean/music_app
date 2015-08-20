@@ -16,6 +16,13 @@
     <a href="<%= new_user_url %>">Sign up</a> or
     <a href="<%= new_session_url %>">Log in</a>
   <% end %>
+<ul>
+<% if flash.now[:errors] %>
+  <% flash.now[:errors].each do |error| %>
+  <li><%= error %></li>
+  <% end %>
+<% end %>
+</ul>
 
 <%= yield %>
 
