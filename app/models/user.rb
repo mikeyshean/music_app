@@ -37,6 +37,11 @@ class User < ActiveRecord::Base
     self.activated
   end
 
+  def set_activation_token!
+    self.activation_token = self.class.generate_session_token
+    save!
+  end
+
   private
 
   def ensure_session_token

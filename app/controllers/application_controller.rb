@@ -26,4 +26,12 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_url unless logged_in?
   end
 
+  def send_activation_email(user)
+    user.set_activation_token!
+    msg = UserMailer.activation_email(user)
+    msg.deliver_now
+  end
+
+  
+
 end

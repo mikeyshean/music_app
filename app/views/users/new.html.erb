@@ -1,6 +1,6 @@
 <h1>Sign up!</h1>
 
-
+<%= flash_notice %>
 <form action="<%= users_url %>" method="post">
   <%= authenticity_token %>
 <%= render "form" %>
