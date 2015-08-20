@@ -4,13 +4,12 @@
   <a href="<%= band_url(@band) %>">Back to <%= @band.name %></a>
 </p>
 
-
 <form action="<%= albums_url %>" method="post">
+  <%= authenticity_token %>
 
-  <label for="album_band"> Band: </label>
-    <select
-      name="album[band_id]"
-      id="album_band">
+  <p><label for="album_band"> Band: </label></p>
+    <select name="album[band_id]" id="album_band">
+
     <% @bands.each do |band| %>
       <option value="<%= band.id %>" <%= "selected" if band == @band %>><%= band.name  %></option>
     <% end %>
@@ -18,7 +17,7 @@
   <br>
 
 
-  <label for="album_name">Album: </label>
+  <p><label for="album_name">Album: </label></p>
   <input
     type="text"
     name="album[name]"
@@ -26,7 +25,7 @@
     value="<%= @album.name %>">
   <br>
 
-  <label for="album_style">Type: </label>
+  <p><label for="album_style">Type: </label></p>
   <% Album::STYLES.each do |style| %>
     <input
       type="radio"
@@ -37,5 +36,5 @@
   <br>
 
 
-  <button>Submit</button>
+  <p><button>Submit</button></p>
 </form>

@@ -1,0 +1,10 @@
+<h1><%= @track.name %> Lyrics</h1>
+
+<p>
+  <a href="<%= album_url(@track.album) %>">Back to Tracks</a>
+</p>
+
+<%= ugly_lyrics(@track.lyrics) %>
+
+<%= render "notes/form", { note: @note, track: @track } %>
+<%= render "notes/note", notes: @notes %>

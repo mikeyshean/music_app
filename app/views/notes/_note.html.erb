@@ -1,0 +1,16 @@
+
+<% notes.each do |note| %>
+<p>
+<h4><%= note.user %>:</h4>
+<p><%= note.text  %></p>
+Posted <%= time_ago_in_words(note.created_at) %> ago
+<% if current_user == note.user %>
+  <form action="<%= note_url(note) %>" method="post">
+    <%= authenticity_token %>
+    <input type="hidden" name="_method" value="delete">
+    <button>Delete</button>
+  </form>
+<% end %>
+</p>
+
+<% end %>

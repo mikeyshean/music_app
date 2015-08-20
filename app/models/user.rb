@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   validates :email, :password_digest, :session_token, presence: true
   validates :email, :session_token, uniqueness: true
   after_initialize :ensure_session_token
+  has_many :notes
 
   def self.generate_session_token
     SecureRandom::urlsafe_base64

@@ -2,5 +2,7 @@
 
 
 <form action="<%= users_url %>" method="post">
+  <%= authenticity_token %>
 <%= render "form" %>
+
 Already a user? <a href="<%= new_session_url %>">Log in!</a>

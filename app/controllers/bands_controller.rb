@@ -1,7 +1,8 @@
 class BandsController < ApplicationController
+  before_action :require_login
 
   def index
-    @bands = Band.all
+    @bands = Band.all.order(:name)
   end
 
   def new
@@ -14,13 +15,20 @@ class BandsController < ApplicationController
     if @band.save
       redirect_to band_url(@band)
     else
-      # Flash errors
+      flash.now[:errors] = @band.errors.full_messages
       render :new
     end
   end
 
   def show
     @band = Band.find(params[:id])
+  end
+
+  def destroy
+    @band = Band.find(params[:id])
+    @band.destroy
+
+    redirect_to bands_url
   end
 
   private

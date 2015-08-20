@@ -1,0 +1,36 @@
+<h1>New Track</h1>
+
+<p>
+  <a href="<%= album_url(@album) %>">Back to <%= @album.name %></a>
+</p>
+
+<form action="<%= tracks_url %>" method="post">
+  <%= authenticity_token %>
+
+  <p><label for="track_album">Album: </label></p>
+  <select name="track[album_id]" id="track_album">
+    <% @albums.each do |album| %>
+      <option value="<%= album.id %>" <%= "selected" if album == @album %>><%= album.name  %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <p><label for="track_type">Type: </label></p>
+  <input type="radio" name="track[bonus]" value="false" id="track_type">Regular</option>
+  <input type="radio" name="track[bonus]" value="true" id="track_type">Bonus</option>
+  <br>
+
+  <p><label for="track_title">Title: </label></p>
+  <input
+    type="text"
+    name="track[name]"
+    id="track_title"
+    value="<%= @track.name %>">
+  <br>
+
+  <p><label for="track_lyrics">Lyrics: </label></p>
+  <textarea name="track[lyrics]" id="track_lyrics"><%= @track.lyrics %></textarea>
+  </br>
+
+  <p><button>Submit</button></p>
+</form>
