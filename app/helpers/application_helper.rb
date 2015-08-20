@@ -14,7 +14,17 @@ module ApplicationHelper
       .split("\n")
       .map { |line| "<pre>&#9835; #{line}</pre><br>"}
       .join("")
-      
+
     formatted_lyrics.html_safe
+  end
+
+  def delete_button(action)
+    <<-HTML.html_safe
+      <form action="#{action} %>" method="post">
+      #{authenticity_token}
+        <input type="hidden" name="_method" value="delete">
+        <button>Delete</album>
+      </form>
+    HTML
   end
 end

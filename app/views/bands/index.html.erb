@@ -2,7 +2,10 @@
 
 <ul>
 <% @bands.each do |band| %>
-  <li> <a href="<%= band_url(band) %>"><%= band.name %></a></li>
+  <li>
+    <a href="<%= band_url(band) %>"><%= band.name %></a>
+    <%= delete_button(band_url(band)) %>
+  </li>
 <% end %>
 </ul>
 

@@ -5,7 +5,10 @@
 
 <ul>
   <% @album.tracks.each do |track| %>
-    <li><a href="<%= track_url(track)  %>"><%= track.name %></li>
+    <li>
+      <a href="<%= track_url(track)  %>"><%= track.name %>
+      <%= delete_button(track_url(track)) %>
+    </li>
   <% end %>
 </ul>
 

@@ -8,7 +8,11 @@
 
 <ul>
 <% @band.albums.each do |album| %>
-  <li> <a href="<%= album_url(album)  %>"><%= album.name %></a></li>
+  <li>
+    <a href="<%= album_url(album)  %>"><%= album.name %></a>
+     <%= delete_button(album_url(album)) %>
+  </li>
+
 <% end %>
 </ul>
 
